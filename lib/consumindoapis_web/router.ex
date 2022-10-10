@@ -13,6 +13,10 @@ defmodule ConsumindoapisWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug ConsumindoapisWeb.Auth.Pipeline
+  end
+
   scope "/", ConsumindoapisWeb do
     pipe_through :browser
 
@@ -22,6 +26,13 @@ defmodule ConsumindoapisWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", ConsumindoapisWeb do
     pipe_through :api
+
+    post "/user/create/", UserController, :create
+    post "/user/login", UserController, :login
+  end
+  scope "/api", ConsumindoapisWeb do
+    pipe_through [:api, :auth]
+
     get "/repos/:username", RepositoriesController, :show
   end
 

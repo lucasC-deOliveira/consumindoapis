@@ -7,7 +7,7 @@ defmodule Consumindoapis.MixProject do
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -46,9 +46,9 @@ defmodule Consumindoapis.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:tesla, "~> 1.4"},
-
-      # optional, but recommended adapter
-      {:hackney, "~> 1.17"}
+      {:pbkdf2_elixir, "~> 1.3"},
+      {:hackney, "~> 1.17"},
+      {:guardian, "~> 2.0"}
     ]
   end
 

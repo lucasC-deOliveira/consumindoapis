@@ -10,6 +10,16 @@ use Mix.Config
 config :consumindoapis,
   ecto_repos: [Consumindoapis.Repo]
 
+# Configures Guardian for JWT generation
+
+config :consumindoapis, ConsumindoapisWeb.Auth.Guardian,
+  issuer: "Consumindo APIs",
+  secret_key: "l6zmTLeS0Kb3Y3sog3m9Bn5oPCFWIS5xyk5CIjnu1qh4qGOzrNCbtI5DzjIYIejS"
+
+config :consumindoapis, ConsumindoapisWeb.Auth.Pipeline,
+  module: ConsumindoapisWeb.Auth.Guardian,
+  error_handler: ConsumindoapisWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :consumindoapis, ConsumindoapisWeb.Endpoint,
   url: [host: "localhost"],
@@ -23,7 +33,8 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :consumindoapis, Consumindoapis.Repositories.Get, github_repos_adapter: Consumindoapis.Github.Client
+config :consumindoapis, Consumindoapis.Repositories.Get,
+  github_repos_adapter: Consumindoapis.Github.Client
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

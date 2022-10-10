@@ -8,5 +8,6 @@ defmodule Consumindoapis do
   """
   alias Consumindoapis.Repositories.Get, as: RepositoryGet
 
+
   defdelegate get_all_repositories(params), to: RepositoryGet, as: :call
 end
